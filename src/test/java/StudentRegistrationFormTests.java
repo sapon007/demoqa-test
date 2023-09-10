@@ -30,7 +30,7 @@ public class StudentRegistrationFormTests {
         $(".react-datepicker__month-select").selectOption("March");
         $(".react-datepicker__year-select").selectOption("1995");
         $(".react-datepicker__day--001").click();
-        // ToDo
+        // To do
         $("subjects-auto-complete__control").click();
 
         $(byText("Sports")).click();
