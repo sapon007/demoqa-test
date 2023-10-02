@@ -1,6 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
@@ -13,19 +14,19 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
         String firstName = "Дмитрий";
         String lastName = "Сапонов";
         String userEmail = "saponadmin@gmail.com";
+        String gender = "Other";
         String userNumber = "8910123456";
         String currentAddress = "Россия, г. Москва";
 
-        open("/automation-practice-form");
-        // скрываем рекламу и подвал
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
 
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#userEmail").setValue(userEmail);
-        $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue(userNumber);
+        RegistrationPage registrationPage = new RegistrationPage();
+        registrationPage.openPage()
+                        .setFirstName(firstName)
+                        .setLastName(lastName)
+                        .setUserEmail(userEmail)
+                        .setGender(gender)
+                        .setUserNumber(userNumber);
+
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("March");
         $(".react-datepicker__year-select").selectOption("1995");
