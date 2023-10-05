@@ -24,11 +24,12 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
     String state = "Haryana";
     String city = "Karnal";
 
+    RegistrationPage registrationPage = new RegistrationPage();
+
     @DisplayName("Заполнить все поля формы")
     @Test
     void fillInAllFieldsOfTheFormTest() {
 
-        RegistrationPage registrationPage = new RegistrationPage();
         registrationPage.openPage()
                         .setFirstName(firstName)
                         .setLastName(lastName)
@@ -62,7 +63,6 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
     @DisplayName("Заполнить только обязательные поля формы")
     @Test
     void fillInOnlyRequiredFieldsOfTheForm() {
-        RegistrationPage registrationPage = new RegistrationPage();
 
         registrationPage.openPage()
                 .setFirstName(firstName)
@@ -84,7 +84,6 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
     @DisplayName("Не заполнить ни одно поле и отправить форму")
     @Test
     void notFillFieldsOfTheForm() {
-        RegistrationPage registrationPage = new RegistrationPage();
 
         registrationPage.openPage()
                 .pressSubmit();
