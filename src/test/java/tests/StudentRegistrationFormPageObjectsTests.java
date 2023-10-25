@@ -21,6 +21,7 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
     String firstHobby = "Sports";
     String secondHobby = "Reading";
     String thirdHobby = "Music";
+    String img = "59502-veneciya_italiya_zaliv_yasnyj_den.jpg";
     String state = "Haryana";
     String city = "Karnal";
 
@@ -42,7 +43,7 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
                         .setHobbies(firstHobby)
                         .setHobbies(secondHobby)
                         .setHobbies(thirdHobby)
-                        .uploadPicture("59502-veneciya_italiya_zaliv_yasnyj_den.jpg")
+                        .uploadPicture(img)
                         .setCurrentAddress(currentAddress)
                         .selectStateCity(state, city)
                         .pressSubmit();
