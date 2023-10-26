@@ -2,8 +2,12 @@ package tests;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pages.RegistrationPage;
 
 public class StudentRegistrationFormPageObjectsWithFakerTests extends TestBase {
+
+    RegistrationPage registrationPage = new RegistrationPage();
+    TestData testData = new TestData();
 
 
     @DisplayName("Заполнить все поля формы")
