@@ -1,10 +1,13 @@
 package tests;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 
-public class StudentRegistrationFormPageObjectsTests extends TestBase {
+import static com.codeborne.selenide.logevents.SelenideLogger.step;
+
+public class StudentRegistrationFormPageObjectsTests extends RemoteTestBase {
 
     // Test data
     String firstName = "Дмитрий";
@@ -27,40 +30,48 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
 
     RegistrationPage registrationPage = new RegistrationPage();
 
+    @Tag("Selenoid_run")
     @DisplayName("Заполнить все поля формы")
     @Test
     void fillInAllFieldsOfTheFormTest() {
 
-        registrationPage.openPage()
-                        .setFirstName(firstName)
-                        .setLastName(lastName)
-                        .setUserEmail(userEmail)
-                        .setGender(gender)
-                        .setUserNumber(userNumber)
-                        .setDayOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
-                        .setSubjects(firstSubject)
-                        .setSubjects(secondSubject)
-                        .setHobbies(firstHobby)
-                        .setHobbies(secondHobby)
-                        .setHobbies(thirdHobby)
-                        .uploadPicture(img)
-                        .setCurrentAddress(currentAddress)
-                        .selectStateCity(state, city)
-                        .pressSubmit();
+        step("Заполняем форму", ()-> {
+            registrationPage.openPage()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setUserEmail(userEmail)
+                    .setGender(gender)
+                    .setUserNumber(userNumber)
+                    .setDayOfBirth(dayOfBirth, monthOfBirth, yearOfBirth)
+                    .setSubjects(firstSubject)
+                    .setSubjects(secondSubject)
+                    .setHobbies(firstHobby)
+                    .setHobbies(secondHobby)
+                    .setHobbies(thirdHobby)
+                    .uploadPicture(img)
+                    .setCurrentAddress(currentAddress)
+                    .selectStateCity(state, city)
+                    .pressSubmit();
+        });
+
 
         // Выполняем проверки
-        registrationPage.checkModalVisible()
-                        .checkModalTitle()
-                        .checkResultTable("Student Name", firstName + " " + lastName)
-                        .checkResultTable("Student Email", userEmail)
-                        .checkResultTable("Gender", gender)
-                        .checkResultTable("Mobile", userNumber)
-                        .checkResultTable("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
-                        .checkResultTable("Address", currentAddress)
-                        .closeModal()
-                        .checkModalHidden();
+        step("Выполняем проверки", ()-> {
+            registrationPage.checkModalVisible()
+                    .checkModalTitle()
+                    .checkResultTable("Student Name", firstName + " " + lastName)
+                    .checkResultTable("Student Email", userEmail)
+                    .checkResultTable("Gender", gender)
+                    .checkResultTable("Mobile", userNumber)
+                    .checkResultTable("Date of Birth", dayOfBirth + " " + monthOfBirth + "," + yearOfBirth)
+                    .checkResultTable("Address", currentAddress)
+                    .closeModal()
+                    .checkModalHidden();
+        });
+
     }
 
+    @Tag("Selenoid_run")
     @DisplayName("Заполнить только обязательные поля формы")
     @Test
     void fillInOnlyRequiredFieldsOfTheForm() {
@@ -82,6 +93,7 @@ public class StudentRegistrationFormPageObjectsTests extends TestBase {
 
     }
 
+    @Tag("Selenoid_run")
     @DisplayName("Не заполнить ни одно поле и отправить форму")
     @Test
     void notFillFieldsOfTheForm() {
